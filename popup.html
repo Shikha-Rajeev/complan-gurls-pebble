@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --stone: #8e9aaa;
+      --stone-light: #c8d0da;
+      --stone-dark: #5c6b7a;
+      --bg: #f4f6f0;
+      --card: #ffffff;
+      --peach: #ffb347;
+      --peach-dark: #e8952a;
+      --green: #7ec88a;
+      --green-dark: #5aaa68;
+      --ink: #3a4a56;
+      --muted: #8a9aaa;
+      --border: #dde4ec;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      width: 320px;
+      font-family: 'Nunito', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      overflow: hidden;
+    }
+
+    /* ── Hero area ───────────────────────────────────────────── */
+    .hero {
+      background: linear-gradient(160deg, #dde8f0 0%, #c8d8e8 100%);
+      padding: 22px 20px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Subtle dot pattern */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.5) 1px, transparent 1px);
+      background-size: 18px 18px;
+      pointer-events: none;
+    }
+
+    /* ── Mascot ──────────────────────────────────────────────── */
+    .mascot-wrap {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .mascot {
+      width: 88px;
+      height: 88px;
+      object-fit: contain;
+      animation: mascot-float 3s ease-in-out infinite;
+      filter: drop-shadow(0 8px 16px rgba(100,120,140,0.3));
+    }
+
+    @keyframes mascot-float {
+      0%, 100% { transform: translateY(0px) rotate(-1deg); }
+      50%       { transform: translateY(-7px) rotate(1deg); }
+    }
+
+    /* Speech bubble */
+    .speech {
+      background: white;
+      border: 2.5px solid var(--stone-light);
+      border-radius: 14px;
+      padding: 7px 14px;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--stone-dark);
+      margin-top: 10px;
+      position: relative;
+      white-space: nowrap;
+      box-shadow: 0 3px 10px rgba(100,120,140,0.15);
+    }
+
+    .speech::before {
+      content: '';
+      position: absolute;
+      top: -9px;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 5px solid transparent;
+      border-bottom-color: var(--stone-light);
+    }
+
+    .speech::after {
+      content: '';
+      position: absolute;
+      top: -6px;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 4px solid transparent;
+      border-bottom-color: white;
+    }
+
+    /* Brand name below mascot */
+    .brand {
+      font-family: 'Fredoka One', cursive;
+      font-size: 26px;
+      color: var(--stone-dark);
+      letter-spacing: 1px;
+      margin: 10px 0 0;
+      text-shadow: 0 2px 0 rgba(255,255,255,0.7);
+    }
+
+    .tagline {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--stone);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 18px;
+      text-align: center;
+      width: 100%;
+    }
+
+    /* Wavy clip bottom of hero */
+    .hero-bottom {
+      width: 100%;
+      height: 20px;
+      background: var(--bg);
+      border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+      margin-top: 4px;
+    }
+
+    /* ── Status pill ─────────────────────────────────────────── */
+    .status-row {
+      display: flex;
+      justify-content: center;
+      margin: 10px 0 14px;
+    }
+
+    .status-pill {
+      background: var(--green);
+      color: white;
+      font-family: 'Fredoka One', cursive;
+      font-size: 13px;
+      padding: 4px 14px;
+      border-radius: 20px;
+      box-shadow: 0 3px 0 var(--green-dark), 0 4px 12px rgba(126,200,138,0.4);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      animation: pill-pulse 2.5s ease-in-out infinite;
+    }
+
+    @keyframes pill-pulse {
+      0%, 100% { box-shadow: 0 3px 0 var(--green-dark), 0 4px 12px rgba(126,200,138,0.4); }
+      50%       { box-shadow: 0 3px 0 var(--green-dark), 0 4px 20px rgba(126,200,138,0.65); }
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      background: rgba(255,255,255,0.8);
+      border-radius: 50%;
+      animation: dot-blink 2s infinite;
+    }
+
+    @keyframes dot-blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    /* ── Form body ───────────────────────────────────────────── */
+    .form-body {
+      padding: 0 16px 6px;
+    }
+
+    .field {
+      margin-bottom: 12px;
+    }
+
+    .field label {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--stone);
+      margin-bottom: 5px;
+    }
+
+    .field label .lbl-icon {
+      font-size: 13px;
+    }
+
+    .field input,
+    .field select {
+      width: 100%;
+      padding: 10px 14px;
+      border: 2.5px solid var(--border);
+      border-radius: 14px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink);
+      background: var(--card);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+      box-shadow: 0 3px 0 var(--border);
+      appearance: none;
+    }
+
+    .field input:focus,
+    .field select:focus {
+      border-color: var(--stone);
+      box-shadow: 0 3px 0 var(--stone), 0 0 0 3px rgba(142,154,170,0.15);
+      transform: translateY(-1px);
+    }
+
+    .field input::placeholder {
+      color: var(--stone-light);
+      font-weight: 600;
+    }
+
+    /* Custom select */
+    .select-wrap {
+      position: relative;
+    }
+
+    .select-wrap::after {
+      content: '▾';
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--stone);
+      font-size: 14px;
+      pointer-events: none;
+    }
+
+    .field select {
+      padding-right: 36px;
+      cursor: pointer;
+    }
+
+    /* Age group chips */
+    .age-chips {
+      display: flex;
+      gap: 6px;
+    }
+
+    .age-chip {
+      flex: 1;
+      padding: 9px 4px;
+      border: 2.5px solid var(--border);
+      border-radius: 12px;
+      background: white;
+      font-family: 'Nunito', sans-serif;
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--muted);
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.15s;
+      line-height: 1.3;
+    }
+
+    .age-chip:hover {
+      border-color: var(--stone);
+      color: var(--stone-dark);
+    }
+
+    .age-chip.selected {
+      background: var(--stone-dark);
+      border-color: var(--stone-dark);
+      color: white;
+      box-shadow: 0 3px 0 #3a4a56;
+      transform: translateY(-1px);
+    }
+
+    .age-chip .chip-emoji {
+      display: block;
+      font-size: 16px;
+      margin-bottom: 2px;
+    }
+
+    /* ── Save button ─────────────────────────────────────────── */
+    .save-btn {
+      width: 100%;
+      padding: 13px;
+      background: var(--peach);
+      color: white;
+      border: none;
+      border-radius: 16px;
+      font-family: 'Fredoka One', cursive;
+      font-size: 17px;
+      cursor: pointer;
+      letter-spacing: 0.3px;
+      box-shadow: 0 5px 0 var(--peach-dark), 0 8px 20px rgba(255,179,71,0.35);
+      transition: transform 0.12s, box-shadow 0.12s;
+      margin: 4px 0 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .save-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 7px 0 var(--peach-dark), 0 12px 24px rgba(255,179,71,0.4);
+    }
+
+    .save-btn:active {
+      transform: translateY(4px);
+      box-shadow: 0 1px 0 var(--peach-dark);
+    }
+
+    /* ── Saved confirmation ──────────────────────────────────── */
+    .saved-msg {
+      display: none;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--green-dark);
+      padding: 2px 0 12px;
+      animation: pop-in 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    }
+
+    @keyframes pop-in {
+      from { opacity: 0; transform: scale(0.8); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    /* ── Divider ─────────────────────────────────────────────── */
+    .divider {
+      height: 1.5px;
+      background: var(--border);
+      margin: 4px 16px 12px;
+      border-radius: 2px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero with mascot -->
+  <div class="hero">
+    <div class="mascot-wrap">
+      <img src="icons/pebble.png" class="mascot" alt="Pebble mascot" />
+      <div class="speech">Small, protective, always in your pocket  🛡️</div>
+    </div>
+    <div class="brand">Pebble</div>
+    <div class="tagline">Smart protection for young browsers</div>
+    <div class="hero-bottom"></div>
+  </div>
+
+  <!-- Status pill -->
+  <div class="status-row">
+    <div class="status-pill">
+      <div class="status-dot"></div>
+      Watching &amp; protecting
+    </div>
+  </div>
+
+  <!-- Form -->
+  <div class="form-body">
+
+    <div class="field">
+      <label><span class="lbl-icon">📧</span> Parent Email</label>
+      <input type="email" id="parentEmail" placeholder="parent@email.com" />
+    </div>
+
+    <div class="field">
+      <label><span class="lbl-icon">👤</span> Child's Name</label>
+      <input type="text" id="childName" placeholder="e.g. Alex" />
+    </div>
+
+    <div class="field">
+      <label><span class="lbl-icon">🎂</span> Age Group</label>
+      <div class="age-chips">
+        <button class="age-chip" data-value="young">
+          <span class="chip-emoji">🐣</span>
+          6–9
+        </button>
+        <button class="age-chip" data-value="middle">
+          <span class="chip-emoji">🌱</span>
+          10–13
+        </button>
+        <button class="age-chip" data-value="teen">
+          <span class="chip-emoji">🌟</span>
+          14–17
+        </button>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <button class="save-btn" id="save">
+      <span>💾</span> Save Settings
+    </button>
+    <p class="saved-msg" id="savedMsg">✓ All saved! Pebble is on the case 🪨</p>
+
+  </div>
+
+  <script src="popup.js"></script>
+  <script>
+    // Age chip selection
+    let selectedAge = '';
+    document.querySelectorAll('.age-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        document.querySelectorAll('.age-chip').forEach(c => c.classList.remove('selected'));
+        chip.classList.add('selected');
+        selectedAge = chip.dataset.value;
+      });
+    });
+
+    // Load saved age selection
+    chrome.storage.sync.get(['ageGroup'], (data) => {
+      if (data.ageGroup) {
+        selectedAge = data.ageGroup;
+        const chip = document.querySelector(`.age-chip[data-value="${data.ageGroup}"]`);
+        if (chip) chip.classList.add('selected');
+      }
+    });
+
+    // Override save to include chip value
+    document.getElementById('save').addEventListener('click', () => {
+      chrome.storage.sync.set({
+        parentEmail: document.getElementById('parentEmail').value,
+        childName: document.getElementById('childName').value,
+        ageGroup: selectedAge
+      });
+      const msg = document.getElementById('savedMsg');
+      msg.style.display = 'block';
+      setTimeout(() => msg.style.display = 'none', 2500);
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+{
+  "urlPatterns": [
+    "free-robux",
+    "robux-generator",
+    "free-vbucks",
+    "vbucks-generator",
+    "free-gems",
+    "coin-generator",
+    "hack-generator",
+    "free-skins",
+    "claim-prize",
+    "winner-selected",
+    "gift-card-winner",
+    "free-minecraft",
+    "fortnite-free"
+  ],
+  "pagePatterns": [
+    "free robux",
+    "free v-bucks",
+    "free vbucks",
+    "you have been selected",
+    "you are our lucky winner",
+    "you have won",
+    "claim your prize",
+    "claim your reward",
+    "unlimited coins",
+    "unlimited gems",
+    "enter your password to claim",
+    "complete a survey to get",
+    "human verification required",
+    "verify you are human to receive",
+    "free gift card",
+    "congratulations you won",
+    "send this to 10 friends",
+    "your account has been compromised click here"
+  ]
+}

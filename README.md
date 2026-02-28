@@ -2,27 +2,28 @@
   <img src="./img.png" alt="Project Banner" width="100%">
 </p>
 
-# [Project Name] 🎯
+# PEBBLE 🎯
 
 ## Basic Details
 
-### Team Name: [Name]
+### Team Name: Complan Gurls
 
 ### Team Members
-- Member 1: [Name] - [College]
-- Member 2: [Name] - [College]
+- Member 1: Angelina Rose M - TKM COLLEGE OF ENGINEERING
+- Member 2: Shikha Rajeev - TKM COLLEGE OF ENGINEERING
 
 ### Hosted Project Link
-[mention your project hosted link here]
+Since it's a browser extension, it cannot be deployed in any free manner. So we are sharing the github link:
+https://github.com/Shikha-Rajeev/Pebble.git
 
 ### Project Description
-[2-3 lines about what your project does]
+Pebble watches for scam patterns and suspicious sites while kids browse, and instead of throwing up a red wall, it pops up a friendly speech bubble right next to the dangerous content explaining why it's a scam and what to do. Most parental control tools just block. Kids learn to route around them, and never develop the instinct to spot danger themselves. Pebble is different - every warning is a 10-second lesson. Over time, kids get better at the internet, not just safer while the extension is installed.
 
 ### The Problem statement
-[What problem are you solving?]
+Children lack the experience to recognize online scams, and existing parental controls simply block content without teaching kids why something is dangerous - leaving them permanently vulnerable the moment a blocker fails.
 
 ### The Solution
-[How are you solving it?]
+Pebble is a Chrome extension that detects scam patterns in real time and surfaces a friendly, educational warning bubble directly next to suspicious content - explaining the trick, notifying parents, and building the child's own instinct to stay safe online.
 
 ---
 
@@ -30,50 +31,75 @@
 
 ### Technologies/Components Used
 
-**For Software:**
-- Languages used: [e.g., JavaScript, Python, Java]
-- Frameworks used: [e.g., React, Django, Spring Boot]
-- Libraries used: [e.g., axios, pandas, JUnit]
-- Tools used: [e.g., VS Code, Git, Docker]
+For Software:
 
-**For Hardware:**
-- Main components: [List main components]
-- Specifications: [Technical specifications]
-- Tools required: [List tools needed]
+Languages used: JavaScript, HTML, CSS
+Frameworks used: Chrome Extensions API (Manifest V3)
+Libraries used: EmailJS (parent notifications), Google Safe Browsing API (threat detection), Google Fonts (Baloo 2, Fredoka One)
+Tools used: VS Code, Git, GitHub, Chrome Developer Mode
+
+For Hardware:
+
+Not applicable — Pebble is a browser extension that runs entirely in Chrome on any standard computer or laptop. No hardware components required.
 
 ---
 
 ## Features
 
 List the key features of your project:
-- Feature 1: [Description]
-- Feature 2: [Description]
-- Feature 3: [Description]
-- Feature 4: [Description]
+- Feature 1:  Real-time scam detection — catches fake currency generators, prize scams, password phishing, and more
+- Feature 2: Google Safe Browsing integration — flags known malware and phishing sites
+- Feature 3: Speech bubble warnings — appears right next to the suspicious text, not as a jarring full-page block
+- Feature 4: Ask a Parent button — one tap sends an email alert to the parent with the flagged URL
+- Feature 5: Leave this page — instantly redirects the child to Google
+- Feature 6: Kid-specific patterns — targets how kids actually get scammed (Robux, V-Bucks, free skins, fake winners)
 
 ---
 
 ## Implementation
 
-### For Software:
+1. Clone the repo
+bashgit clone https://github.com/YOUR_USERNAME/pebble.git
+cd pebble
+2. Get a Google Safe Browsing API key
 
-#### Installation
-```bash
-[Installation commands - e.g., npm install, pip install -r requirements.txt]
-```
+Go to console.cloud.google.com
+Create a new project called "Pebble"
+Enable the Safe Browsing API
+Go to Credentials → Create API Key → copy it
 
-#### Run
-```bash
-[Run commands - e.g., npm start, python app.py]
-```
+Paste it into background.js:
+javascriptconst SAFE_BROWSING_KEY = "YOUR_KEY_HERE";
+3. Set up EmailJS (for parent notifications)
 
-### For Hardware:
+Sign up at emailjs.com (free tier)
+Create a service (connect your Gmail)
+Create an email template with these variables:
 
-#### Components Required
-[List all components needed with specifications]
+{{child_name}}, {{suspicious_url}}, {{reason}}, {{time}}
 
-#### Circuit Setup
-[Explain how to set up the circuit]
+
+Copy your Service ID, Template ID, and Public Key
+
+Paste them into background.js:
+javascriptconst EMAILJS_SERVICE_ID = "YOUR_SERVICE_ID";
+const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";
+const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY";
+4. Load into Chrome
+
+Open Chrome and go to chrome://extensions
+Enable Developer Mode (toggle in top right)
+Click Load Unpacked
+Select the pebble/ folder
+
+The Pebble icon should appear in your toolbar.
+5. Configure via the popup
+Click the Pebble icon in Chrome toolbar → enter:
+
+Parent's email address
+Child's name
+Age group (affects detection sensitivity)
+
 
 ---
 
@@ -83,338 +109,75 @@ List the key features of your project:
 
 #### Screenshots (Add at least 3)
 
-![Screenshot1](Add screenshot 1 here with proper name)
-*Add caption explaining what this shows*
+<img width="333" height="644" alt="image" src="https://github.com/user-attachments/assets/3824aa22-f735-4153-9db6-998fdfe6386d" />
 
-![Screenshot2](Add screenshot 2 here with proper name)
-*Add caption explaining what this shows*
+Pebble's parent settings panel 
 
-![Screenshot3](Add screenshot 3 here with proper name)
-*Add caption explaining what this shows*
+<img width="711" height="379" alt="image" src="https://github.com/user-attachments/assets/eec53da5-25ff-47fc-b8a0-3239ad875dfa" />
 
-#### Diagrams
+A scam being flagged and pop up being shown explaining the scam
 
-**System Architecture:**
+<img width="848" height="296" alt="image" src="https://github.com/user-attachments/assets/f7b525a6-5b90-4c32-88e5-e56adf3aa8e7" />
 
-![Architecture Diagram](docs/architecture.png)
-*Explain your system architecture - components, data flow, tech stack interaction*
-
-**Application Workflow:**
-
-![Workflow](docs/workflow.png)
-*Add caption explaining your workflow*
-
----
-
-### For Hardware:
-
-#### Schematic & Circuit
-
-![Circuit](Add your circuit diagram here)
-*Add caption explaining connections*
-
-![Schematic](Add your schematic diagram here)
-*Add caption explaining the schematic*
-
-#### Build Photos
-
-![Team](Add photo of your team here)
-
-![Components](Add photo of your components here)
-*List out all components shown*
-
-![Build](Add photos of build process here)
-*Explain the build steps*
-
-![Final](Add photo of final product here)
-*Explain the final build*
-
----
-
-## Additional Documentation
-
-### For Web Projects with Backend:
-
-#### API Documentation
-
-**Base URL:** `https://api.yourproject.com`
-
-##### Endpoints
-
-**GET /api/endpoint**
-- **Description:** [What it does]
-- **Parameters:**
-  - `param1` (string): [Description]
-  - `param2` (integer): [Description]
-- **Response:**
-```json
-{
-  "status": "success",
-  "data": {}
-}
-```
-
-**POST /api/endpoint**
-- **Description:** [What it does]
-- **Request Body:**
-```json
-{
-  "field1": "value1",
-  "field2": "value2"
-}
-```
-- **Response:**
-```json
-{
-  "status": "success",
-  "message": "Operation completed"
-}
-```
-
-[Add more endpoints as needed...]
-
----
-
-### For Mobile Apps:
-
-#### App Flow Diagram
-
-![App Flow](docs/app-flow.png)
-*Explain the user flow through your application*
-
-#### Installation Guide
-
-**For Android (APK):**
-1. Download the APK from [Release Link]
-2. Enable "Install from Unknown Sources" in your device settings:
-   - Go to Settings > Security
-   - Enable "Unknown Sources"
-3. Open the downloaded APK file
-4. Follow the installation prompts
-5. Open the app and enjoy!
-
-**For iOS (IPA) - TestFlight:**
-1. Download TestFlight from the App Store
-2. Open this TestFlight link: [Your TestFlight Link]
-3. Click "Install" or "Accept"
-4. Wait for the app to install
-5. Open the app from your home screen
-
-**Building from Source:**
-```bash
-# For Android
-flutter build apk
-# or
-./gradlew assembleDebug
-
-# For iOS
-flutter build ios
-# or
-xcodebuild -workspace App.xcworkspace -scheme App -configuration Debug
-```
-
----
-
-### For Hardware Projects:
-
-#### Bill of Materials (BOM)
-
-| Component | Quantity | Specifications | Price | Link/Source |
-|-----------|----------|----------------|-------|-------------|
-| Arduino Uno | 1 | ATmega328P, 16MHz | ₹450 | [Link] |
-| LED | 5 | Red, 5mm, 20mA | ₹5 each | [Link] |
-| Resistor | 5 | 220Ω, 1/4W | ₹1 each | [Link] |
-| Breadboard | 1 | 830 points | ₹100 | [Link] |
-| Jumper Wires | 20 | Male-to-Male | ₹50 | [Link] |
-| [Add more...] | | | | |
-
-**Total Estimated Cost:** ₹[Amount]
-
-#### Assembly Instructions
-
-**Step 1: Prepare Components**
-1. Gather all components listed in the BOM
-2. Check component specifications
-3. Prepare your workspace
-![Step 1](images/assembly-step1.jpg)
-*Caption: All components laid out*
-
-**Step 2: Build the Power Supply**
-1. Connect the power rails on the breadboard
-2. Connect Arduino 5V to breadboard positive rail
-3. Connect Arduino GND to breadboard negative rail
-![Step 2](images/assembly-step2.jpg)
-*Caption: Power connections completed*
-
-**Step 3: Add Components**
-1. Place LEDs on breadboard
-2. Connect resistors in series with LEDs
-3. Connect LED cathodes to GND
-4. Connect LED anodes to Arduino digital pins (2-6)
-![Step 3](images/assembly-step3.jpg)
-*Caption: LED circuit assembled*
-
-**Step 4: [Continue for all steps...]**
-
-**Final Assembly:**
-![Final Build](images/final-build.jpg)
-*Caption: Completed project ready for testing*
-
----
-
-### For Scripts/CLI Tools:
-
-#### Command Reference
-
-**Basic Usage:**
-```bash
-python script.py [options] [arguments]
-```
-
-**Available Commands:**
-- `command1 [args]` - Description of what command1 does
-- `command2 [args]` - Description of what command2 does
-- `command3 [args]` - Description of what command3 does
-
-**Options:**
-- `-h, --help` - Show help message and exit
-- `-v, --verbose` - Enable verbose output
-- `-o, --output FILE` - Specify output file path
-- `-c, --config FILE` - Specify configuration file
-- `--version` - Show version information
-
-**Examples:**
-
-```bash
-# Example 1: Basic usage
-python script.py input.txt
-
-# Example 2: With verbose output
-python script.py -v input.txt
-
-# Example 3: Specify output file
-python script.py -o output.txt input.txt
-
-# Example 4: Using configuration
-python script.py -c config.json --verbose input.txt
-```
-
-#### Demo Output
-
-**Example 1: Basic Processing**
-
-**Input:**
-```
-This is a sample input file
-with multiple lines of text
-for demonstration purposes
-```
-
-**Command:**
-```bash
-python script.py sample.txt
-```
-
-**Output:**
-```
-Processing: sample.txt
-Lines processed: 3
-Characters counted: 86
-Status: Success
-Output saved to: output.txt
-```
-
-**Example 2: Advanced Usage**
-
-**Input:**
-```json
-{
-  "name": "test",
-  "value": 123
-}
-```
-
-**Command:**
-```bash
-python script.py -v --format json data.json
-```
-
-**Output:**
-```
-[VERBOSE] Loading configuration...
-[VERBOSE] Parsing JSON input...
-[VERBOSE] Processing data...
-{
-  "status": "success",
-  "processed": true,
-  "result": {
-    "name": "test",
-    "value": 123,
-    "timestamp": "2024-02-07T10:30:00"
-  }
-}
-[VERBOSE] Operation completed in 0.23s
-```
+The pop up and additional explanation regarding the scam.
 
 ---
 
 ## Project Demo
 
 ### Video
-[Add your demo video link here - YouTube, Google Drive, etc.]
+(https://drive.google.com/file/d/1eO0WQPaH1-OBtNgL9Sx-BCufQrVXz10Z/view?usp=drive_link)
 
-*Explain what the video demonstrates - key features, user flow, technical highlights*
+The video opens with the Pebble extension loaded in Chrome, showing the popup settings panel where a parent enters their email address, child's name, and selects an age group. Settings are saved with one click.
+The first demonstration visits a page containing "free robux" in the content. Within milliseconds of the page loading, Pebble's pattern scanner fires — the phrase is highlighted in amber directly on the page and a friendly speech bubble appears beside it, identifying the scam type, explaining why it's dangerous in kid-friendly language, and offering two actions: leave the page immediately or notify a parent.
+The "Why is this a scam?" section is expanded, revealing a plain-language explanation of exactly how this type of scam works and what the scammer is actually after — turning the warning into a teachable moment.
+Next, the "Ask a Parent" button is clicked. The button confirms the action instantly, and within seconds a formatted email arrives in the parent's inbox containing the flagged URL, the reason it was flagged, the child's name, and a timestamp.
 
 ### Additional Demos
-[Add any extra demo materials/links - Live site, APK download, online demo, etc.]
+(https://drive.google.com/file/d/1f3M5AES2OoluGFP5SjMV9eOAU7Vo3muD/view?usp=drive_link)
 
 ---
 
 ## AI Tools Used (Optional - For Transparency Bonus)
 
-If you used AI tools during development, document them here for transparency:
+Tool Used: Claude (Anthropic)
 
-**Tool Used:** [e.g., GitHub Copilot, v0.dev, Cursor, ChatGPT, Claude]
+Generated the initial Chrome Manifest V3 boilerplate and service worker structure
+Suggested the Google Safe Browsing API and EmailJS as the core backend stack
+Produced the background.js architecture including tab listeners and message passing
+Debugged content script injection and IIFE scoping issues in real time
+Helped structure the tooltip positioning logic for different screen edge cases
+Reviewed and improved scam pattern regex for better coverage
+Generated kid-friendly warning copy and educational explanations for each scam type
 
-**Purpose:** [What you used it for]
-- Example: "Generated boilerplate React components"
-- Example: "Debugging assistance for async functions"
-- Example: "Code review and optimization suggestions"
+Key Prompts Used:
 
-**Key Prompts Used:**
-- "Create a REST API endpoint for user authentication"
-- "Debug this async function that's causing race conditions"
-- "Optimize this database query for better performance"
+"Divide the task for two people and give execution step by step for an 8-hour hackathon"
+"Explain what Person A should do in detail, step by step till hour 5"
+"These tests are not working — Safe Browsing and pattern detection both failing"
+"We are changing from a full warning page to a speech bubble next to spam links — update the approach"
+"What small features can be added given our current codebase"
 
-**Percentage of AI-generated code:** [Approximately X%]
+Percentage of AI-generated code: ~60%
+Human Contributions:
 
-**Human Contributions:**
-- Architecture design and planning
-- Custom business logic implementation
-- Integration and testing
-- UI/UX design decisions
-
-*Note: Proper documentation of AI usage demonstrates transparency and earns bonus points in evaluation!*
+Final architecture decisions and tech stack choices
+Custom scam pattern library based on real kid-targeted scam research
+Visual design direction for the popup and tooltip aesthetic
+Integration, testing, and debugging across both detection layers
+Decision to pivot from full-page blocking to inline speech bubbles — the core UX insight that shaped the whole product
+Real-time problem solving when tests failed and adapting the approach mid-build
 
 ---
 
 ## Team Contributions
 
-- [Name 1]: [Specific contributions - e.g., Frontend development, API integration, etc.]
-- [Name 2]: [Specific contributions - e.g., Backend development, Database design, etc.]
-- [Name 3]: [Specific contributions - e.g., UI/UX design, Testing, Documentation, etc.]
+- Angelina Rose M: Frontend & User Experience
+Built the entire visual layer — the DOM-based scam pattern scanner, amber text highlighting, smart-positioned animated tooltip, and the "Why is this a scam?" expandable section. Designed the full popup UI including the mascot hero, age group chip selector, and all kid-friendly warning copy.
+- Shikha Rajeev: Backend & Detection Engineering
+Integrated Google Safe Browsing API into the Chrome service worker, built the full background.js architecture including tab listeners, message passing, whitelist logic, and parent email notifications via EmailJS. Handled all Chrome Manifest V3 configuration and chrome.storage.sync for persistent settings.
 
 ---
 
-## License
-
-This project is licensed under the [LICENSE_NAME] License - see the [LICENSE](LICENSE) file for details.
-
-**Common License Options:**
-- MIT License (Permissive, widely used)
-- Apache 2.0 (Permissive with patent grant)
-- GPL v3 (Copyleft, requires derivative works to be open source)
-
----
 
 Made with ❤️ at TinkerHub

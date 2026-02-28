@@ -1,171 +1,187 @@
-# 🪨 Pebble
+ <img src="./img.png" alt="Project Banner" width="100%">
+</p>
 
-> A Chrome extension that protects kids from online scams — not by blocking, but by teaching.
+# PEBBLE 🎯
 
-Pebble watches for scam patterns and suspicious sites while kids browse, and instead of throwing up a red wall, it pops up a friendly speech bubble right next to the dangerous content explaining *why* it's a scam and what to do.
+## Basic Details
+
+### Team Name: Complan Gurls
+
+### Team Members
+- Member 1: Angelina Rose M - TKM COLLEGE OF ENGINEERING
+- Member 2: Shikha Rajeev - TKM COLLEGE OF ENGINEERING
+
+### Hosted Project Link
+Since it's a browser extension, it cannot be deployed in any free manner. So we are sharing the github link:
+https://github.com/Shikha-Rajeev/Pebble.git
+
+### Project Description
+Pebble watches for scam patterns and suspicious sites while kids browse, and instead of throwing up a red wall, it pops up a friendly speech bubble right next to the dangerous content explaining why it's a scam and what to do. Most parental control tools just block. Kids learn to route around them, and never develop the instinct to spot danger themselves. Pebble is different - every warning is a 10-second lesson. Over time, kids get better at the internet, not just safer while the extension is installed.
+
+### The Problem statement
+Children lack the experience to recognize online scams, and existing parental controls simply block content without teaching kids why something is dangerous - leaving them permanently vulnerable the moment a blocker fails.
+
+### The Solution
+Pebble is a Chrome extension that detects scam patterns in real time and surfaces a friendly, educational warning bubble directly next to suspicious content - explaining the trick, notifying parents, and building the child's own instinct to stay safe online.
 
 ---
 
-## Why Pebble?
+## Technical Details
 
-Most parental control tools just block. Kids learn to route around them, and never develop the instinct to spot danger themselves. Pebble is different — every warning is a 10-second lesson. Over time, kids get better at the internet, not just safer while the extension is installed.
+### Technologies/Components Used
+
+For Software:
+Languages used: JavaScript, HTML, CSS
+Frameworks used: Chrome Extensions API (Manifest V3)
+Libraries used: EmailJS (parent notifications), Google Safe Browsing API (threat detection), Google Fonts (Baloo 2, Fredoka One)
+Tools used: VS Code, Git, GitHub, Chrome Developer Mode
+
+For Hardware:
+
+Not applicable — Pebble is a browser extension that runs entirely in Chrome on any standard computer or laptop. No hardware components required.
 
 ---
 
 ## Features
 
-- 🔍 **Real-time scam detection** — catches fake currency generators, prize scams, password phishing, and more
-- 🛡️ **Google Safe Browsing integration** — flags known malware and phishing sites
-- 💬 **Speech bubble warnings** — appears right next to the suspicious text, not as a jarring full-page block
-- 👋 **Ask a Parent button** — one tap sends an email alert to the parent with the flagged URL
-- 🏃 **Leave this page** — instantly redirects the child to Google
-- 🎮 **Kid-specific patterns** — targets how kids actually get scammed (Robux, V-Bucks, free skins, fake winners)
+List the key features of your project:
+- Feature 1:  Real-time scam detection — catches fake currency generators, prize scams, password phishing, and more
+- Feature 2: Google Safe Browsing integration — flags known malware and phishing sites
+- Feature 3: Speech bubble warnings — appears right next to the suspicious text, not as a jarring full-page block
+- Feature 4: Ask a Parent button — one tap sends an email alert to the parent with the flagged URL
+- Feature 5: Leave this page — instantly redirects the child to Google
+- Feature 6: Kid-specific patterns — targets how kids actually get scammed (Robux, V-Bucks, free skins, fake winners)
 
 ---
 
-## Scam Patterns Detected
+## Implementation
 
-| Pattern | Example |
-|---|---|
-| Fake game currency | "Free Robux", "Free V-Bucks generator" |
-| Fake item giveaways | "Free skins", "Unlimited coins" |
-| Password harvesting | "Enter your Roblox password to claim" |
-| Verification scams | "Verify you're human to receive your prize" |
-| Fake winner alerts | "You've been selected", "You've won" |
-| Gift card scams | "Claim your free gift card" |
-| Urgency manipulation | "Limited time free offer" |
-
----
-
-## How It Works
-
-```
-User visits a page
-       │
-       ├──► background.js checks URL against Google Safe Browsing API
-       │         │
-       │         └──► If dangerous → sends SHOW_BUBBLE to content.js
-       │
-       └──► content.js scans page text for scam patterns
-                 │
-                 └──► If match found → highlights the flagged text
-                                     → shows speech bubble tooltip next to it
-                                     → optionally emails parent
-```
-
----
-
-## Project Structure
-
-```
-pebble/
-├── manifest.json       # Extension config (Manifest V3)
-├── background.js       # Safe Browsing API, email notifications, storage
-├── content.js          # Pattern detection, highlight, tooltip UI
-├── popup.html          # Settings panel UI
-├── popup.js            # Settings save/load logic
-├── styles/
-│   └── popup.css       # Popup styles
-└── icons/
-    └── icon48.png      # Extension icon
-```
-
----
-
-## Setup & Installation
-
-### 1. Clone the repo
-
-```bash
-git clone https://github.com/YOUR_USERNAME/pebble.git
+1. Clone the repo
+bashgit clone https://github.com/YOUR_USERNAME/pebble.git
 cd pebble
-```
+2. Get a Google Safe Browsing API key
 
-### 2. Get a Google Safe Browsing API key
 
-1. Go to [console.cloud.google.com](https://console.cloud.google.com)
-2. Create a new project called "Pebble"
-3. Enable the **Safe Browsing API**
-4. Go to Credentials → Create API Key → copy it
 
-Paste it into `background.js`:
-```javascript
-const SAFE_BROWSING_KEY = "YOUR_KEY_HERE";
-```
+Go to console.cloud.google.com
+Create a new project called "Pebble"
+Enable the Safe Browsing API
+Go to Credentials → Create API Key → copy it
 
-### 3. Set up EmailJS (for parent notifications)
+Paste it into background.js:
+javascriptconst SAFE_BROWSING_KEY = "YOUR_KEY_HERE";
+3. Set up EmailJS (for parent notifications)
 
-1. Sign up at [emailjs.com](https://www.emailjs.com) (free tier)
-2. Create a service (connect your Gmail)
-3. Create an email template with these variables:
-   - `{{child_name}}`, `{{suspicious_url}}`, `{{reason}}`, `{{time}}`
-4. Copy your Service ID, Template ID, and Public Key
+Sign up at emailjs.com (free tier)
+Create a service (connect your Gmail)
+Create an email template with these variables:
+{{child_name}}, {{suspicious_url}}, {{reason}}, {{time}}
+Copy your Service ID, Template ID, and Public Key
 
-Paste them into `background.js`:
-```javascript
-const EMAILJS_SERVICE_ID = "YOUR_SERVICE_ID";
+Paste them into background.js:
+javascriptconst EMAILJS_SERVICE_ID = "YOUR_SERVICE_ID";
 const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";
 const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY";
-```
 
-### 4. Load into Chrome
+4. Load into Chrome
 
-1. Open Chrome and go to `chrome://extensions`
-2. Enable **Developer Mode** (toggle in top right)
-3. Click **Load Unpacked**
-4. Select the `pebble/` folder
+Open Chrome and go to chrome://extensions
+Enable Developer Mode (toggle in top right)
+Click Load Unpacked
+Select the pebble/ folder
 
 The Pebble icon should appear in your toolbar.
-
-### 5. Configure via the popup
-
+5. Configure via the popup
 Click the Pebble icon in Chrome toolbar → enter:
-- Parent's email address
-- Child's name
-- Age group (affects detection sensitivity)
+
+Parent's email address
+Child's name
+Age group (affects detection sensitivity)
 
 ---
 
-## Testing
+## Project Documentation
 
-**Test Safe Browsing detection:**
+### For Software:
 
-Visit this Google-provided test URL:
-```
-http://malware.testing.google.test/testing/malware/
-```
-→ Pebble tooltip should appear on the page.
+#### Screenshots (Add at least 3)
 
-**Test pattern detection:**
+<img width="333" height="644" alt="image" src="https://github.com/user-attachments/assets/3824aa22-f735-4153-9db6-998fdfe6386d" />
 
-Create a local HTML file:
-```html
-<!DOCTYPE html>
-<html>
-<body>
-  <h1>Get free robux here!</h1>
-</body>
-</html>
-```
-Open it in Chrome via File → Open File → tooltip should appear with a Robux-specific warning.
+Pebble's parent settings panel 
 
-**Test parent email:**
+<img width="711" height="379" alt="image" src="https://github.com/user-attachments/assets/eec53da5-25ff-47fc-b8a0-3239ad875dfa" />
 
-Click "Ask a Parent" on any Pebble tooltip → check the parent's inbox.
+A scam being flagged and pop up being shown explaining the scam
 
-**Debug tips:**
-- Background script errors: `chrome://extensions` → Pebble → "Service Worker"
-- Content script errors: Any page → Inspect → Console
-- Check if content script loaded: In console, type `window.__pebbleLoaded` (should return `true`)
+<img width="848" height="296" alt="image" src="https://github.com/user-attachments/assets/f7b525a6-5b90-4c32-88e5-e56adf3aa8e7" />
+
+The pop up and additional explanation regarding the scam.
 
 ---
 
-## Built With
+## Project Demo
 
-- **Vanilla JS** — no frameworks, fast and lightweight
-- **Chrome Extensions API** (Manifest V3)
-- **Google Safe Browsing API** — threat detection
-- **EmailJS** — parent notifications with no backend required
-- **Chrome Storage Sync** — settings persist across devices
+### Video
+(https://drive.google.com/file/d/1eO0WQPaH1-OBtNgL9Sx-BCufQrVXz10Z/view?usp=drive_link)
+
+The video opens with the Pebble extension loaded in Chrome, showing the popup settings panel where a parent enters their email address, child's name, and selects an age group. Settings are saved with one click.
+The first demonstration visits a page containing "free robux" in the content. Within milliseconds of the page loading, Pebble's pattern scanner fires — the phrase is highlighted in amber directly on the page and a friendly speech bubble appears beside it, identifying the scam type, explaining why it's dangerous in kid-friendly language, and offering two actions: leave the page immediately or notify a parent.
+The "Why is this a scam?" section is expanded, revealing a plain-language explanation of exactly how this type of scam works and what the scammer is actually after — turning the warning into a teachable moment.
+Next, the "Ask a Parent" button is clicked. The button confirms the action instantly, and within seconds a formatted email arrives in the parent's inbox containing the flagged URL, the reason it was flagged, the child's name, and a timestamp.
+
+### Additional Demos
+(https://drive.google.com/file/d/1f3M5AES2OoluGFP5SjMV9eOAU7Vo3muD/view?usp=drive_link)
 
 ---
+
+## AI Tools Used (Optional - For Transparency Bonus)
+
+Tool Used: Claude (Anthropic)
+
+
+
+Generated the initial Chrome Manifest V3 boilerplate and service worker structure
+Suggested the Google Safe Browsing API and EmailJS as the core backend stack
+Produced the background.js architecture including tab listeners and message passing
+Debugged content script injection and IIFE scoping issues in real time
+Helped structure the tooltip positioning logic for different screen edge cases
+Reviewed and improved scam pattern regex for better coverage
+Generated kid-friendly warning copy and educational explanations for each scam type
+
+Key Prompts Used:
+
+
+
+
+"Divide the task for two people and give execution step by step for an 8-hour hackathon"
+"Explain what Person A should do in detail, step by step till hour 5"
+"These tests are not working — Safe Browsing and pattern detection both failing"
+"We are changing from a full warning page to a speech bubble next to spam links — update the approach"
+"What small features can be added given our current codebase"
+
+Percentage of AI-generated code: ~60%
+Human Contributions:
+
+
+
+
+Final architecture decisions and tech stack choices
+Custom scam pattern library based on real kid-targeted scam research
+Visual design direction for the popup and tooltip aesthetic
+Integration, testing, and debugging across both detection layers
+Decision to pivot from full-page blocking to inline speech bubbles — the core UX insight that shaped the whole product
+Real-time problem solving when tests failed and adapting the approach mid-build
+
+---
+
+## Team Contributions
+
+- Angelina Rose M: Frontend & User Experience
+Built the entire visual layer — the DOM-based scam pattern scanner, amber text highlighting, smart-positioned animated tooltip, and the "Why is this a scam?" expandable section. Designed the full popup UI including the mascot hero, age group chip selector, and all kid-friendly warning copy.
+- Shikha Rajeev: Backend & Detection Engineering
+Integrated Google Safe Browsing API into the Chrome service worker, built the full background.js architecture including tab listeners, message passing, whitelist logic, and parent email notifications via EmailJS. Handled all Chrome Manifest V3 configuration and chrome.storage.sync for persistent settings.
+
+---
+
+Made with ❤️ at TinkerHub
